@@ -1,21 +1,25 @@
 package br.ufpb.dcx.dsc.figurinhas.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="tb_figurinha")
 public class Figurinha {
 
+    @Column(name = "nome")
     private String nome;
 
+    @Column(name = "selecao")
     private String selecao;
+    @Column(name = "user_id")
     private Long userId;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private static Long IdSequenceCounter = 0L;
 
-    public Figurinha(Long userId, String nome, String selecao){
-        this.userId = userId;
-        this.nome = nome;
-        this.selecao = selecao;
-        this.id = Figurinha.IdSequenceCounter++;
-
+    public Figurinha(){
     }
 
     public Long getUserId() {

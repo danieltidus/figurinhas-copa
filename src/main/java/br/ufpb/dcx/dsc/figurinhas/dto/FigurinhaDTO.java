@@ -10,11 +10,8 @@ public class FigurinhaDTO {
     private Long id;
     private static Long IdSequenceCounter = 0L;
 
-    public FigurinhaDTO(String nome, Long userId,  String selecao, Long id){
-        this.userId = userId;
-        this.nome = nome;
-        this.selecao = selecao;
-        this.id = id;
+    public FigurinhaDTO(){
+
     }
 
     public Long getUserId() {
@@ -37,6 +34,9 @@ public class FigurinhaDTO {
         return id;
     }
 
+    public void setId(Long id){
+        this.id = id;
+    }
     public String getSelecao() {
         return selecao;
     }

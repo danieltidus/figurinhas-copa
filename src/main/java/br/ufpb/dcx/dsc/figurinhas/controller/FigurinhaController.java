@@ -33,20 +33,13 @@ public class FigurinhaController {
         return convertToDTO(t);
     }
 
-    // Exemplo de rota para listagem de todas as tarefas sem query string
-    @GetMapping("/figurinhas")
-    public List<FigurinhaDTO> getFilteredFigurinhas(){
-        List<Figurinha> figurinhas = todoService.listFigurinhas();
-        return figurinhas.stream().map(this::convertToDTO).collect(Collectors.toList());
-    }
-
     // Exemplo com Query strings via ResquestParam - comente o de cima caso queira usar esta rota.
-//    @GetMapping("/figurinhas")
-//    public List<FigurinhaDTO> getFilteredFigurinhas(@RequestParam(name="user", required = false) Long userId){
-//        System.out.println("userId " + userId);
-//        List<Figurinha> figurinhas = todoService.listFigurinhas(userId);
-//        return figurinhas.stream().map(task -> convertToDTO(task)).collect(Collectors.toList());
-//    }
+    @GetMapping("/figurinhas")
+    public List<FigurinhaDTO> getFilteredFigurinhas(@RequestParam(name="user", required = false) Long userId){
+        System.out.println("userId " + userId);
+        List<Figurinha> figurinhas = todoService.listFigurinhas(userId);
+        return figurinhas.stream().map(task -> convertToDTO(task)).collect(Collectors.toList());
+    }
 
     @PostMapping("/figurinhas")
     public FigurinhaDTO createFigurinha(@RequestBody FigurinhaDTO taskDTO){
