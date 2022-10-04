@@ -1,6 +1,7 @@
 package br.ufpb.dcx.dsc.figurinhas.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_user")
@@ -19,6 +20,9 @@ public class User {
     @OneToOne
     @JoinColumn(name = "photo_id")
     private Photo photo;
+
+    @OneToMany(mappedBy = "user")
+    private List<Album> albuns;
 
     public Long getUserId() {
         return userId;
@@ -50,5 +54,13 @@ public class User {
 
     public void setPhoto(Photo photo) {
         this.photo = photo;
+    }
+
+    public List<Album> getAlbuns() {
+        return albuns;
+    }
+
+    public void setAlbuns(List<Album> albuns) {
+        this.albuns = albuns;
     }
 }
