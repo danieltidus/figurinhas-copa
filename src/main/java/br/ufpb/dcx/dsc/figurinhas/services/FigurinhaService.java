@@ -8,22 +8,15 @@ import java.util.*;
 
 @Service
 public class FigurinhaService {
-    
     private final ArrayList<Figurinha> figurinhaList= new ArrayList<>();
-private FigurinhaRepository figurinhaRepository;
+    private FigurinhaRepository figurinhaRepository;
+
     public FigurinhaService(FigurinhaRepository figurinhaRepository){
         this.figurinhaRepository = figurinhaRepository;
     }
+
     public Figurinha getFigurinha(Long id){
         return figurinhaRepository.getReferenceById(id);
-    }
-
-    public List<Figurinha> listFigurinhas(Long userId){
-
-        if(userId != null){
-            return figurinhaRepository.findAllByUserId(userId);
-        }
-        return figurinhaRepository.findAll();
     }
 
     public List<Figurinha> listFigurinhas() {
@@ -47,14 +40,5 @@ private FigurinhaRepository figurinhaRepository;
             return toUpdate;
         }
         return null;
-    }
-
-    private int getFigurinhaIndexById(Long taskId){
-        for( int i = 0; i < figurinhaList.size(); i++){
-            Figurinha t = figurinhaList.get(i);
-            if(figurinhaList.get(i).getId().equals(taskId))
-                return i;
-        }
-        throw new NoSuchElementException("Figurinha not found!");
     }
 }
