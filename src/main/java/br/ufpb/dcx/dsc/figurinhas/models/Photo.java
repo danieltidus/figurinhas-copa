@@ -17,6 +17,14 @@ public class Photo {
     @OneToOne(mappedBy = "photo")
     private User user;
 
+    public Photo(){
+
+    }
+
+    public Photo(String URL){
+        this.URL = URL;
+    }
+
     public Long getPhotoId() {
         return photoId;
     }
