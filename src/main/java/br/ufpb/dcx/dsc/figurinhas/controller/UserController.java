@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -36,7 +37,7 @@ public class UserController {
 
 
     @PostMapping(path = "/user")
-    UserDTO createUser(@RequestBody UserDTO userDTO){
+    UserDTO createUser(@Valid @RequestBody UserDTO userDTO){
         User u = convertToEntity(userDTO);
         User saved = userService.createUser(u);
         return convertToDTO(saved);

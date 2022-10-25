@@ -1,9 +1,12 @@
 package br.ufpb.dcx.dsc.figurinhas.dto;
 
+import javax.validation.constraints.NotBlank;
+
 public class AlbumDTO {
 
     private Long albumId;
 
+    @NotBlank
     private String nome;
 
     public Long getAlbumId() {

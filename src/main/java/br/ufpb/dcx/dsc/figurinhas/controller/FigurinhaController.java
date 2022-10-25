@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,7 @@ public class FigurinhaController {
     }
 
     @PostMapping("/figurinha")
-    public FigurinhaDTO createFigurinha(@RequestBody FigurinhaDTO taskDTO){
+    public FigurinhaDTO createFigurinha(@Valid @RequestBody FigurinhaDTO taskDTO){
         Figurinha t = convertToEntity(taskDTO);
         Figurinha taskCreated = todoService.saveFigurinha(t);
         return convertToDTO(taskCreated);

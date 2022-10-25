@@ -1,8 +1,14 @@
 package br.ufpb.dcx.dsc.figurinhas.dto;
 
+import br.ufpb.dcx.dsc.figurinhas.validation.Selecao;
+
+import javax.validation.constraints.NotBlank;
+
 public class FigurinhaDTO {
 
+    @NotBlank
     private String nome;
+    @Selecao
     private String selecao;
 
     private Long id;

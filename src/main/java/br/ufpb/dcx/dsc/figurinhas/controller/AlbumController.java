@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,7 @@ public class AlbumController {
     }
 
     @PostMapping("/user/{userId}/album")
-    public AlbumDTO createAlbum(@PathVariable Long userId, @RequestBody AlbumDTO albumDTO){
+    public AlbumDTO createAlbum(@PathVariable Long userId, @Valid @RequestBody AlbumDTO albumDTO){
         Album a = convertToEntity(albumDTO);
         Album albumCreated = albumService.saveAlbum(a, userId);
         return convertToDTO(albumCreated);

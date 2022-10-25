@@ -3,10 +3,15 @@ package br.ufpb.dcx.dsc.figurinhas.dto;
 import br.ufpb.dcx.dsc.figurinhas.models.Photo;
 import br.ufpb.dcx.dsc.figurinhas.models.User;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 public class UserDTO {
 
     private Long id;
+    @NotBlank
     private String nome;
+    @Email
     private String email;
 
     private Photo photo;
