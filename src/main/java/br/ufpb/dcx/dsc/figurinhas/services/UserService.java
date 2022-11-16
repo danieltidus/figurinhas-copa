@@ -8,6 +8,7 @@ import br.ufpb.dcx.dsc.figurinhas.repository.AlbumRepository;
 import br.ufpb.dcx.dsc.figurinhas.repository.FigurinhaRepository;
 import br.ufpb.dcx.dsc.figurinhas.repository.PhotoRepository;
 import br.ufpb.dcx.dsc.figurinhas.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -22,11 +23,14 @@ public class UserService {
     private AlbumRepository albumRepository;
     private FigurinhaRepository figurinhaRepository;
 
-    public UserService(FigurinhaRepository figurinhaRepository, AlbumRepository albumRepository, UserRepository userRepository, PhotoRepository photoRepository){
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder, FigurinhaRepository figurinhaRepository, AlbumRepository albumRepository, UserRepository userRepository, PhotoRepository photoRepository){
         this.userRepository = userRepository;
         this.photoRepository = photoRepository;
         this.albumRepository = albumRepository;
         this.figurinhaRepository = figurinhaRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     public List<User> listUsers() {
@@ -40,7 +44,7 @@ public class UserService {
     }
 
     public User createUser(User user){
-
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Photo photo = new Photo("www.exemplo.com/foto.png");
         photoRepository.save(photo);
         user.setPhoto(photo);
