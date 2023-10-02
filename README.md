@@ -1,2 +1,2 @@
 # figurinhas-copa
-Projeto Teste
+Projeto GQS
